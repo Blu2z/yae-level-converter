@@ -1,0 +1,549 @@
+
+newmtl "Lavka_wc1"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\Lavka_wc1.dds"
+
+newmtl "admin2_ruchka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\admin2_ruchka.dds"
+
+newmtl "admindoor"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\admindoor.dds"
+
+newmtl "ajur"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ajur.dds"
+
+newmtl "arcline"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\arcline.dds"
+
+newmtl "arcline2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\arcline2.dds"
+
+newmtl "arcline3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\arcline3.dds"
+
+newmtl "arcline4"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\arcline4.dds"
+
+newmtl "arka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\arka.dds"
+
+newmtl "asfalt"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\asfalt.dds"
+
+newmtl "asfalt3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\asfalt3.dds"
+
+newmtl "avia"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\avia.dds"
+
+newmtl "baliasin"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\baliasin.dds"
+
+newmtl "balka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\balka.dds"
+
+newmtl "bareline"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\bareline.dds"
+
+newmtl "baza"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\baza.dds"
+
+newmtl "beton6"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\beton6.dds"
+
+newmtl "beton8"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\beton8.dds"
+
+newmtl "bigofis"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\bigofis.dds"
+
+newmtl "boardposter"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\boardposter.dds"
+
+newmtl "box"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\box.dds"
+
+newmtl "box_metro"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\box_metro.dds"
+
+newmtl "bruschatka3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\bruschatka3.dds"
+
+newmtl "cep"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\cep.dds"
+
+newmtl "chugpalka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\chugpalka.dds"
+
+newmtl "chugstolb"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\chugstolb.dds"
+
+newmtl "chuguni"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\chuguni.dds"
+
+newmtl "decal_edgeman2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decal_edgeman2.dds"
+
+newmtl "decal_edgesman"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decal_edgesman.dds"
+
+newmtl "decal_groundspot_01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decal_groundspot_01.dds"
+
+newmtl "decor31_o"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor31_o.dds"
+
+newmtl "decor33_o"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor33_o.dds"
+
+newmtl "decor51_o"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor51_o.dds"
+
+newmtl "decor63_o"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor63_o.dds"
+
+newmtl "decor_stolb_1024"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor_stolb_1024.dds"
+
+newmtl "decor_zvezda_01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decor_zvezda_01.dds"
+
+newmtl "decskvar"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\decskvar.dds"
+
+newmtl "dekor3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dekor3.dds"
+
+newmtl "dekor5"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dekor5.dds"
+
+newmtl "dekorpoloska"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dekorpoloska.dds"
+
+newmtl "dekorpoloska2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dekorpoloska2.dds"
+
+newmtl "dekorpoloska3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dekorpoloska3.dds"
+
+newmtl "door_wparad"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\door_wparad.dds"
+
+newmtl "dosiag"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dosiag.dds"
+
+newmtl "doskakrash2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\doskakrash2.dds"
+
+newmtl "doski2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\doski2.dds"
+
+newmtl "doskiblue"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\doskiblue.dds"
+
+newmtl "doskiwight"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\doskiwight.dds"
+
+newmtl "dver"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\dver.dds"
+
+newmtl "electchit2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\electchit2.dds"
+
+newmtl "elektochitok"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\elektochitok.dds"
+
+newmtl "fanera"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\fanera.dds"
+
+newmtl "firebox"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\firebox.dds"
+
+newmtl "flag_01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\flag_01.dds"
+
+newmtl "flagshtok01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\flagshtok01.dds"
+
+newmtl "flarakj"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\flarakj.dds"
+
+newmtl "flare_test01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\flare_test01.dds"
+
+newmtl "floor03_o"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\floor03_o.dds"
+
+newmtl "garbage_paper"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\garbage_paper.dds"
+
+newmtl "gerb"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\gerb.dds"
+
+newmtl "gozirovz0"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\gozirovz0.dds"
+
+newmtl "grazakon"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\grazakon.dds"
+
+newmtl "ground"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ground.dds"
+
+newmtl "ilich"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ilich.dds"
+
+newmtl "ilichdoh"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ilichdoh.dds"
+
+newmtl "kabeli2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kabeli2.dds"
+
+newmtl "kamenplita"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kamenplita.dds"
+
+newmtl "kamensen"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kamensen.dds"
+
+newmtl "kamensen5"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kamensen5.dds"
+
+newmtl "kamensen6"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kamensen6.dds"
+
+newmtl "kamstenbel"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kamstenbel.dds"
+
+newmtl "kaseta2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kaseta2.dds"
+
+newmtl "kasetasermol"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kasetasermol.dds"
+
+newmtl "kirsha"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kirsha.dds"
+
+newmtl "kirsha_lowsat"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kirsha_lowsat.dds"
+
+newmtl "kirsten10"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kirsten10.dds"
+
+newmtl "kirsten8"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kirsten8.dds"
+
+newmtl "klepkiblack"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\klepkiblack.dds"
+
+newmtl "koldoba"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\koldoba.dds"
+
+newmtl "koleso1a256"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\koleso1a256.dds"
+
+newmtl "kormram"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kormram.dds"
+
+newmtl "krashmet"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\krashmet.dds"
+
+newmtl "kraz_20"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kraz_20.dds"
+
+newmtl "krestikdir"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\krestikdir.dds"
+
+newmtl "krishkao"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\krishkao.dds"
+
+newmtl "kroshkabeton2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\kroshkabeton2.dds"
+
+newmtl "larek_tabak"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\larek_tabak.dds"
+
+newmtl "lenin_map"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\lenin_map.dds"
+
+newmtl "lin"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\lin.dds"
+
+newmtl "m4"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\m4.dds"
+
+newmtl "m5"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\m5.dds"
+
+newmtl "m6"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\m6.dds"
+
+newmtl "m6tle"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\m6tle.dds"
+
+newmtl "metal_rust01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\metal_rust01.dds"
+
+newmtl "metalrja"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\metalrja.dds"
+
+newmtl "moskv401"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\moskv401.dds"
+
+newmtl "mramor"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\mramor.dds"
+
+newmtl "muza"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\muza.dds"
+
+newmtl "nadkolonka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\nadkolonka.dds"
+
+newmtl "nizlampi"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\nizlampi.dds"
+
+newmtl "nokonechnik"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\nokonechnik.dds"
+
+newmtl "obrskva"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\obrskva.dds"
+
+newmtl "obruch"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\obruch.dds"
+
+newmtl "ohra3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ohra3.dds"
+
+newmtl "okno2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\okno2.dds"
+
+newmtl "oknograz"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\oknograz.dds"
+
+newmtl "oknograz2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\oknograz2.dds"
+
+newmtl "oknold"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\oknold.dds"
+
+newmtl "old_brovka4"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\old_brovka4.dds"
+
+newmtl "old_liuk"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\old_liuk.dds"
+
+newmtl "old_shtukatur"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\old_shtukatur.dds"
+
+newmtl "oldmram"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\oldmram.dds"
+
+newmtl "parket"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\parket.dds"
+
+newmtl "perila"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\perila.dds"
+
+newmtl "phonebooth"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\phonebooth.dds"
+
+newmtl "plintus"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\plintus.dds"
+
+newmtl "plitkakrestik"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\plitkakrestik.dds"
+
+newmtl "plitkaromb"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\plitkaromb.dds"
+
+newmtl "pobeda1a"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\pobeda1a.dds"
+
+newmtl "podgeg"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\podgeg.dds"
+
+newmtl "polkamen"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\polkamen.dds"
+
+newmtl "polokbel"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\polokbel.dds"
+
+newmtl "polokbelblue"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\polokbelblue.dds"
+
+newmtl "polokbeline"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\polokbeline.dds"
+
+newmtl "polokbelkosblue"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\polokbelkosblue.dds"
+
+newmtl "poloschug"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\poloschug.dds"
+
+newmtl "potolok1"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\potolok1.dds"
+
+newmtl "potolok2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\potolok2.dds"
+
+newmtl "provoda_myaso"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\provoda_myaso.dds"
+
+newmtl "radost"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\radost.dds"
+
+newmtl "raildec"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\raildec.dds"
+
+newmtl "rama"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\rama.dds"
+
+newmtl "reddec"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\reddec.dds"
+
+newmtl "redoblup"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\redoblup.dds"
+
+newmtl "redwight"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\redwight.dds"
+
+newmtl "rombpolos"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\rombpolos.dds"
+
+newmtl "rushnik"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\rushnik.dds"
+
+newmtl "schitok"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\schitok.dds"
+
+newmtl "schitok2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\schitok2.dds"
+
+newmtl "setklall"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\setklall.dds"
+
+newmtl "shit_01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shit_01.dds"
+
+newmtl "shtapik"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shtapik.dds"
+
+newmtl "shtapka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shtapka.dds"
+
+newmtl "shtukatura"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shtukatura.dds"
+
+newmtl "shtukaturapolos"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shtukaturapolos.dds"
+
+newmtl "shukkamsten"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\shukkamsten.dds"
+
+newmtl "simvol"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\simvol.dds"
+
+newmtl "skoda01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\skoda01.dds"
+
+newmtl "smena"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\smena.dds"
+
+newmtl "sorevn"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\sorevn.dds"
+
+newmtl "stekrefl"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stekrefl.dds"
+
+newmtl "stok"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stok.dds"
+
+newmtl "stolb_totalitar_02b"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stolb_totalitar_02b.dds"
+
+newmtl "stolb_totalitar_03b"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stolb_totalitar_03b.dds"
+
+newmtl "stolbikcep"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stolbikcep.dds"
+
+newmtl "ston_fundament01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ston_fundament01.dds"
+
+newmtl "ston_fundament01a"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\ston_fundament01a.dds"
+
+newmtl "stukatu2"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stukatu2.dds"
+
+newmtl "stukgray"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stukgray.dds"
+
+newmtl "stukgraydek"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stukgraydek.dds"
+
+newmtl "stukgraydekjur"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stukgraydekjur.dds"
+
+newmtl "stupe"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stupe.dds"
+
+newmtl "stupeshka"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stupeshka.dds"
+
+newmtl "stupeshkakin"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\stupeshkakin.dds"
+
+newmtl "totline"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\totline.dds"
+
+newmtl "trees_1a"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\trees_1a.dds"
+
+newmtl "trees_alfa"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\trees_alfa.dds"
+
+newmtl "treshina3"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\treshina3.dds"
+
+newmtl "treshina4"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\treshina4.dds"
+
+newmtl "treshina5"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\treshina5.dds"
+
+newmtl "treshina6"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\treshina6.dds"
+
+newmtl "trosmetal"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\trosmetal.dds"
+
+newmtl "tubes_ventil_02"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\tubes_ventil_02.dds"
+
+newmtl "tubes_ventil_03m"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\tubes_ventil_03m.dds"
+
+newmtl "urna"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\urna.dds"
+
+newmtl "verhkol"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\verhkol.dds"
+
+newmtl "wheel_01"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\wheel_01.dds"
+
+newmtl "windawall"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\windawall.dds"
+
+newmtl "wood"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\wood.dds"
+
+newmtl "zabor_paton_03"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\zabor_paton_03.dds"
+
+newmtl "zabor_total_alfa32"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\zabor_total_alfa32.dds"
+
+newmtl "zabor_total_decor1"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\zabor_total_decor1.dds"
+
+newmtl "zim_07b"
+map_Kd "G:\GAMES\You Are Empty\gameres\textures\$dds\zim_07b.dds"

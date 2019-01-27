@@ -1,0 +1,5 @@
+vertices: 1188694
+normals: 1162802
+faces: 1015764
+meshes: 4181
+textures: 183

@@ -1,0 +1,4 @@
+vertices: 0
+faces: 0
+meshes: 0
+textures: 0

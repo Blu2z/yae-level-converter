@@ -1,0 +1,4 @@
+vertices: 303
+faces: 348
+meshes: 1
+textures: 1
