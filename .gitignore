@@ -1,0 +1,25 @@
+# Build
+build/
+
+# Output
+*.obj
+*.mtl
+*_stat.txt
+*.log
+logs/
+
+# Game data
+gameres/
+*.ds2
+*.bin
+*.bin.bak
+
+# Debug scripts
+debug_*.py
+
+# IDE
+.vscode/
+*.vcxproj.user
+
+# Misc
+repomix-output.xml

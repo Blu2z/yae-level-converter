@@ -1,0 +1,48 @@
+diff --git a/sources/xray_re/xr_file_system.cxx b/sources/xray_re/xr_file_system.cxx
+index 164db07..8760b0f 100644
+--- a/sources/xray_re/xr_file_system.cxx
++++ b/sources/xray_re/xr_file_system.cxx
+@@ -2,6 +2,7 @@
+ #include "xr_file_system.h"
+ #include "xr_utils.h"
+ 
++
+ using namespace xray_re;
+ 
+ xr_file_system::xr_file_system(): m_flags(0) {}
+@@ -22,8 +23,13 @@ const xr_file_system::path_alias* xr_file_system::find_path_alias(const char* pa
+ 
+ void xr_file_system::append_path_separator(std::string& path)
+ {
++#ifdef _WIN32
+ 	if (!path.empty() && *(path.end()-1) != '\\')
+ 		path += '\\';
++#else
++	if (!path.empty() && *(path.end()-1) != '/')
++		path += '/';
++#endif
+ }
+ 
+ void xr_file_system::update_path(const char* path, const char* root, const char* add)
+@@ -162,7 +168,7 @@ bool xr_file_system::parse_fs_spec(xr_reader& r)
+ 					values[i].assign(p, last);
+ 				p = last + 1;
+ 				++i;
+-				if (p == end || *last != '|')
++				if (p >= end || *last != '|')
+ 					break;
+ 			}
+ 			assert(i > 0);
+@@ -177,6 +183,12 @@ bool xr_file_system::parse_fs_spec(xr_reader& r)
+ 				pa->filter = values[2];
+ 			if (i > 3)
+ 				pa->caption = values[3];
++			// After parsing values, p points past the '\n' to the next line.
++			// Back up so next_line() in the loop doesn't skip it.
++			if (p > end)
++				p = end;
++			if (p < end)
++				--p;
+ 		} else if (c != ';' && !std::isspace(c)) {
+ 			msg("can't parse line %u", line);
+ 			return false;
