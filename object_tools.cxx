@@ -2,6 +2,7 @@
 #include "xr_object.h"
 #include "xr_object_format.h"
 #include "xr_file_system.h"
+#include "yae_model.h"
 
 using namespace xray_re;
 
@@ -9,7 +10,7 @@ void object_tools::save_object(xray_re::xr_object& object, const char* source) c
 {
 	std::string target;
 	make_target_name(target, source, ".object");
-	object.to_object();
+	object.to_object(xr_sg_type::SOC);
 	if (!object.save_object(target.c_str()))
 		msg("can't save object in %s", target.c_str());
 }
@@ -18,7 +19,7 @@ void object_tools::save_obj(xray_re::xr_object& object, const char* source, bool
 {
 //	std::string target;
 //	make_target_name(target, source, ".obj");
-	if (!object.save_obj(source, max))
+	if (!static_cast<yae_model&>(object).save_obj(source, max))
 		msg("can't save object in %s", source);
 }
 

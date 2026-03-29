@@ -12,6 +12,8 @@
 #include "yae_mesh.h"
 #include <map>
 
+class yae_model;
+
 const char PA_GAME_MAPS[] = "$game_maps$";
 const char PA_CURRENT_MAP[] = "$current_map$";
 
@@ -72,8 +74,10 @@ public:
 private:
 	uint32_t	m_vertex_offset;
 	uint32_t	m_normal_offset;
-	icolor*		m_raw_colors;
+	uint32_t*	m_raw_colors;
 	uint32_t*	m_indices;
+	fvector3*	m_tangents;
+	fvector3*	m_binormals;
 };
 inline bool YAE_BUFFER::has_points() const { return !!(m_signature & S_POINTS); }
 inline bool YAE_BUFFER::has_normals() const { return !!(m_signature & S_NORMALS); }
@@ -135,7 +139,8 @@ public:
 	void			read_vistree(xr_reader& r);
 	void			read_lights(xr_reader& r);
 	void			read_models(xr_reader& r);
-	void			save(const char* outpath, bool split, bool max);
+	void			load_ext_models();
+	void			save(const char* outpath, bool split, bool max, float scale = 1.f);
 	std::string		id();
 	std::string		version();
 	const YAE_BUFFER_vec&	buffers();
@@ -150,6 +155,7 @@ private:
 	YAEStaticLight_vec	m_lights;
 	YAEStaticModel_vec	m_models;
 	std::map<std::string, std::string>	m_map;
+	std::map<std::string, yae_model*>	m_loaded_models;
 };
 
 inline std::string yae_level::id() {return m_header.id;};

@@ -4,6 +4,7 @@
 #ifndef __YAE_MODEL_H__
 #define __YAE_MODEL_H__
 #include "xr_object.h"
+#include "xr_vector4.h"
 #include "yae_mesh.h"
 #include <algorithm>
 #include <map>
@@ -79,6 +80,7 @@ public:
 	void			setup_bones();
 	xr_surface*		create_surface(const xr_raw_surface& raw_surface) const;
 	const std::string&	texture() const;
+	const CMesh_vec&	model_meshes() const;
 
 public:
 	struct bone_io;
@@ -97,4 +99,5 @@ private:
 	uint16_t		m_unk_uint16_t;
 };
 inline const std::string& yae_model::texture() const { return m_name; }
+inline const CMesh_vec& yae_model::model_meshes() const { return m_model_meshes; }
 #endif

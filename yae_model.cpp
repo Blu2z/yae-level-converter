@@ -1,9 +1,12 @@
 #include "yae_model.h"
+#include "ds2_reader.h"
+#include <cmath>
+#include <cstdio>
 
 bool compare(CMesh *first, CMesh *last) {return first->texture() < last->texture();};
 void CBody::load(xr_reader& r)
 {
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	m_shape_type = r.r_u8();
 	m_root_bone = r.r_u16();
 	r.r(xform);
@@ -24,7 +27,7 @@ void CBody::load(xr_reader& r)
 }
 void CAnim::load(xr_reader& r, std::string& version)
 {
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	m_time = r.r_float();
 	m_fps_inv = r.r_float();
 	uint16_t num_bones = r.r_u16();
@@ -41,7 +44,7 @@ void CAnim::load(xr_reader& r, std::string& version)
 			unk_strings = new std::string[unk_num];
 			for (uint16_t j = 0; j < unk_num; ++j) {
 				unk_floats[j] = r.r_float();
-				r.r_string(unk_strings[j]);
+				ds2_r_s(r, unk_strings[j]);
 			}
 		}
 	}
@@ -49,7 +52,7 @@ void CAnim::load(xr_reader& r, std::string& version)
 void CBoneAnims::load(xr_reader& r)
 {
 	m_id = r.r_u16();
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	uint32_t num_frames = r.r_u32();
 	m_frames.reserve(num_frames);
 	for (uint32_t i = 0; i < num_frames; ++i) {
@@ -61,8 +64,11 @@ void CBoneAnims::load(xr_reader& r)
 void SKeyFrame::load(xr_reader& r)
 {
 	m_flag = r.r_u8();
-	r.r_fvector4(unk_fvector4_1);
-	unk_fvector4_1.normalize();
+	r.r(unk_fvector4_1);
+	{
+		float len = std::sqrt(unk_fvector4_1.x*unk_fvector4_1.x + unk_fvector4_1.y*unk_fvector4_1.y + unk_fvector4_1.z*unk_fvector4_1.z + unk_fvector4_1.w*unk_fvector4_1.w);
+		if (len > 0.f) { unk_fvector4_1.x /= len; unk_fvector4_1.y /= len; unk_fvector4_1.z /= len; unk_fvector4_1.w /= len; }
+	}
 	r.r_fvector3(unk_fvector3_1);
 	r.r_fvector3(unk_fvector3_2);
 	m_start_time = r.r_float();
@@ -71,7 +77,7 @@ void yae_model::to_object()
 {
 	m_flags = EOF_DYNAMIC;
 	m_rotation.x += PI / 2;
-	xr_mesh_builder* mesh = new xr_mesh_builder;
+	xr_mesh_builder* mesh = new xr_mesh_builder(xr_sg_type::SOC);
 	size_t vb_reserve = 0, ib_reserve = 0;
 	unsigned vb_signature = 0;
 	for (CMesh_vec_it it = m_model_meshes.begin(), end = m_model_meshes.end(); it != end; ++it) {
@@ -97,6 +103,8 @@ void yae_model::to_object()
 struct yae_model::bone_io: public xr_bone {
 	void	import(xr_reader& r);
 	void	define(uint16_t id, const std::string& name);
+	void	set_parent_name(const std::string& pname) { m_parent_name = pname; }
+	uint16_t	m_yae_parent_id;
 };
 struct yae_model::partition_io: public xr_partition {
 	void	import(xr_reader& r, xr_bone_vec& all_bones);
@@ -112,7 +120,7 @@ struct yae_model::motion_io: public xr_skl_motion {
 inline yae_model::motion_io::motion_io() { m_fps = OGF4_MOTION_FPS; }
 inline void yae_model::bone_io::import(xr_reader& r)
 {
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	m_vmap_name = m_name;
 	r.r(m_bind_xform);
 
@@ -124,10 +132,10 @@ inline void yae_model::bone_io::import(xr_reader& r)
 	m_bind_offset.set(m_bind_xform.c);
 	m_bind_offset.mul(0.01);
 
-	m_parent_id = r.r_u16();
+	m_yae_parent_id = r.r_u16();
 	uint16_t num_bones_connected = r.r_u16();
 	m_children.reserve(num_bones_connected);
-	r.skip<uint16_t>(num_bones_connected);			// избыточная инфа, все дочерние кости ищутся далее
+	r.skip<uint16_t>(num_bones_connected);			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	uint16_t unk_uint16_t2 = r.r_u16();
 }
 void yae_model::bone_io::define(uint16_t id, const std::string& name)
@@ -137,7 +145,7 @@ void yae_model::bone_io::define(uint16_t id, const std::string& name)
 }
 inline void yae_model::partition_io::import(xr_reader& r, xr_bone_vec& all_bones)
 {
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	uint16_t num = r.r_u16();
 	for (uint_fast32_t n = num; n; --n) {
 		uint16_t id = r.r_u16();
@@ -179,9 +187,13 @@ void yae_model::setup_bones()
 	uint16_t bone_id = 0;
 	for (xr_bone_vec_it it = m_bones.begin(), end = m_bones.end();
 			it != end; ++it, ++bone_id) {
-		(*it)->setup_yae(bone_id, *this);
+		bone_io* bio = static_cast<bone_io*>(*it);
+		if (bio->m_yae_parent_id != 0xFFFF && bio->m_yae_parent_id < m_bones.size()) {
+			xr_bone* parent = m_bones[bio->m_yae_parent_id];
+			bio->set_parent_name(parent->name());
+		}
+		bio->setup(bone_id, *this);
 	}
-//	m_bones[0]->calculate_bind();
 }
 xr_surface* yae_model::create_surface(const xr_raw_surface& raw_surface) const
 {
@@ -197,17 +209,17 @@ xr_surface* yae_model::create_surface(const xr_raw_surface& raw_surface) const
 }
 bool yae_model::read(xr_reader& r, bool name_only, bool rotate_model)
 {
-	r.r_string(m_id);
+	ds2_r_s(r, m_id);
 	if (m_id != "DS2ModelFile_1") {
 		msg("model has incompatible file version (0.5) or this is not model at all");
 		return MODEL_READ_FAIL;
 	}
-	r.r_string(m_version);
+	ds2_r_s(r, m_version);
 	if (m_version != "1.0" && m_version != "0.9") {
 		msg("model has incompatible file version (%s)", m_version.data());
 		return MODEL_READ_FAIL;
 	}
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 
 	if (!name_only) {
 		// meshes
@@ -291,9 +303,7 @@ bool yae_model::save_obj(const char *outpath, bool max)
 	std::string textures_path = fs.resolve_path(PA_GAME_TEXTURES);
 	for (std::vector<std::string>::iterator it = materials.begin(), end = materials.end(); it != end; ++it) {
 		char *tex_name = new char[0x100];
-		strcpy_s(tex_name, 0x100, textures_path.data());
-		strcat_s(tex_name, 0x100, "$dds\\");
-		strcat_s(tex_name, 0x100, it->data());
+		snprintf(tex_name, 0x100, "%s$dds\\%s", textures_path.data(), it->data());
 		w_mtl->w_sf("\nnewmtl \"%s\"\nmap_Kd \"%s.dds\"\n", it->data(), tex_name);
 		delete[] tex_name;
 	}
