@@ -1,0 +1,73 @@
+name: Build
+
+on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: linux
+            artifact: yae_converter
+          - os: windows-latest
+            name: windows
+            artifact: yae_converter.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: yae_converter-${{ matrix.name }}
+          path: |
+            build/${{ matrix.artifact }}
+            build/Release/${{ matrix.artifact }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: yae_converter-linux
+          path: linux
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: yae_converter-windows
+          path: windows
+
+      - name: Prepare release files
+        run: |
+          chmod +x linux/yae_converter || true
+          mv linux/yae_converter yae_converter-linux
+          # MSVC puts binaries in Release/ subfolder
+          find windows -name "yae_converter.exe" -exec mv {} yae_converter-windows.exe \;
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            yae_converter-linux
+            yae_converter-windows.exe
+          generate_release_notes: true

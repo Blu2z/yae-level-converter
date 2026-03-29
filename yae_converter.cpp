@@ -83,6 +83,7 @@ int main(int argc, char* argv[])
 		// common options
 		{"-out",	cl_parser::OT_STRING},
 		{"-mode",	cl_parser::OT_STRING},
+		{"-scale",	cl_parser::OT_STRING},
 	};
 
 	cl_parser cl;

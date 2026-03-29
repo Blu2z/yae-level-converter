@@ -11,6 +11,9 @@
 
 using namespace xray_re;
 
+// Helper to load DS2MD model vertex buffers (accesses protected xr_vbuf members)
+void load_vbuf_ds2md(xr_vbuf& vb, xr_reader& r, uint16_t num_verts);
+
 class CMesh {
 public:
 						CMesh();

@@ -1,5 +1,10 @@
 #include "yae_level.h"
+#include "yae_model.h"
+#include "ds2_reader.h"
 #include <algorithm>
+#include <cmath>
+#include <cstring>
+#include <cstdio>
 #include <map>
 
 bool compare_split(CLevelMesh *first, CLevelMesh *last) {
@@ -21,8 +26,8 @@ void yae_level::read(xr_reader& r)
 
 	while (!r.eof()) {
 		std::string chunk_start, chunk_end, chunk_id;
-		r.r_string(chunk_start);
-		r.r_string(chunk_id);
+		ds2_r_s(r, chunk_start);
+		ds2_r_s(r, chunk_id);
 		if (chunk_id == "meshes")
 			read_meshes(r);
 		else if (chunk_id == "buffers")
@@ -37,7 +42,7 @@ void yae_level::read(xr_reader& r)
 			read_models(r);
 		else
 			xr_not_implemented();
-		r.r_string(chunk_end);
+		ds2_r_s(r, chunk_end);
 	}
 	xr_assert(r.eof());
 }
@@ -53,8 +58,8 @@ void yae_level::read_hash(xr_reader& r)
 };
 void yae_level::read_header(xr_reader& r)
 {
-	r.r_string(m_header.id);
-	r.r_string(m_header.version);
+	ds2_r_s(r, m_header.id);
+	ds2_r_s(r, m_header.version);
 };
 void yae_level::read_meshes(xr_reader& r)
 {
@@ -82,7 +87,7 @@ void yae_level::read_lightmaps(xr_reader& r)
 	m_lightmaps.reserve(lm_count);
 	for (uint32_t i = 0; i < lm_count; ++i) {
 		std::string lm;
-		r.r_string(lm);
+		ds2_r_s(r, lm);
 		m_lightmaps.push_back(lm);
 	}
 };
@@ -116,7 +121,44 @@ void yae_level::read_models(xr_reader& r)
 		m_models.push_back(model);
 	}
 };
-void yae_level::save(const char* outpath, bool split, bool max) 
+void yae_level::load_ext_models()
+{
+	if (m_models.empty() || m_map.empty())
+		return;
+
+	xr_file_system& fs = xr_file_system::instance();
+
+	for (YAEStaticModel_vec_it it = m_models.begin(); it != m_models.end(); ++it) {
+		YAEStaticModel* sm = *it;
+		if (m_loaded_models.count(sm->m_name))
+			continue;
+
+		std::map<std::string, std::string>::iterator path_it = m_map.find(sm->m_name);
+		if (path_it == m_map.end()) {
+			msg("model '%s' not found in hash", sm->m_name.c_str());
+			continue;
+		}
+
+		xr_reader* r = fs.r_open(path_it->second);
+		if (!r) {
+			msg("can't open model '%s'", sm->m_name.c_str());
+			continue;
+		}
+
+		yae_model* model = new yae_model;
+		if (model->read(*r, false, false) != MODEL_READ_OK) {
+			msg("can't read model '%s'", sm->m_name.c_str());
+			delete model;
+			fs.r_close(r);
+			continue;
+		}
+		fs.r_close(r);
+		m_loaded_models[sm->m_name] = model;
+		msg("loaded model '%s' (%zu meshes, %zu instances)",
+			sm->m_name.c_str(), model->model_meshes().size(), sm->m_descs.size());
+	}
+}
+void yae_level::save(const char* outpath, bool split, bool max, float scale) 
 {
 	/* sort meshes by texture */
 	if (split)
@@ -187,6 +229,16 @@ void yae_level::save(const char* outpath, bool split, bool max)
 		++mesh_id;
 	}
 
+	/* add model instance textures to materials */
+	for (YAEStaticModel_vec_it it = m_models.begin(); it != m_models.end(); ++it) {
+		std::map<std::string, yae_model*>::iterator mit = m_loaded_models.find((*it)->m_name);
+		if (mit == m_loaded_models.end()) continue;
+		for (CMesh_vec_cit mi = mit->second->model_meshes().begin(); mi != mit->second->model_meshes().end(); ++mi) {
+			if (std::find(materials.begin(), materials.end(), (*mi)->texture()) == materials.end())
+				materials.push_back((*mi)->texture());
+		}
+	}
+
 	/* write mtl file */
 	msg("writing materials");
 	std::string mtl_name = outpath;
@@ -195,9 +247,7 @@ void yae_level::save(const char* outpath, bool split, bool max)
 	std::string textures_path = fs.resolve_path(PA_GAME_TEXTURES);
 	for (std::vector<std::string>::iterator it = materials.begin(), end = materials.end(); it != end; ++it) {
 		char *tex_name = new char[0x100];
-		strcpy_s(tex_name, 0x100, textures_path.data());
-		strcat_s(tex_name, 0x100, "$dds\\");
-		strcat_s(tex_name, 0x100, it->data());
+		snprintf(tex_name, 0x100, "%s$dds\\%s", textures_path.data(), it->data());
 		w_mtl->w_sf("\nnewmtl \"%s\"\nmap_Kd \"%s.dds\"\n", it->data(), tex_name);
 		delete[] tex_name;
 	}
@@ -256,10 +306,14 @@ void yae_level::save(const char* outpath, bool split, bool max)
 			for (uint32_t j = mins[mesh_id]; j <= maxs[mesh_id]; ++j) {					
 				fvector3 v = buf->p(j + off);
 				if (mesh->dynamic()) {
-					fvector3 b;
-					v = mesh->xform()->mul(v, b);
+					const fmatrix& xf = *mesh->xform();
+					fvector3 t;
+					t.x = v.x * xf._11 + v.y * xf._12 + v.z * xf._13 + xf._14;
+					t.y = v.x * xf._21 + v.y * xf._22 + v.z * xf._23 + xf._24;
+					t.z = v.x * xf._31 + v.y * xf._32 + v.z * xf._33 + xf._34;
+					v = t;
 				}
-				w->w_sf("v %f %f %f\n", v.x, v.y, v.z);
+				w->w_sf("v %f %f %f\n", v.x * scale, v.y * scale, v.z * scale);
 			}
 		}
 
@@ -274,6 +328,16 @@ void yae_level::save(const char* outpath, bool split, bool max)
 				normal_offsets[i + 1] = normal_offsets[i] + maxs[mesh_id] - mins[mesh_id] + 1;
 				for (uint32_t j = mins[mesh_id]; j <= maxs[mesh_id]; ++j) {
 					fvector3 norm = buf->n(j + off);
+					if (mesh->dynamic()) {
+						const fmatrix& xf = *mesh->xform();
+						fvector3 tn;
+						tn.x = norm.x * xf._11 + norm.y * xf._12 + norm.z * xf._13;
+						tn.y = norm.x * xf._21 + norm.y * xf._22 + norm.z * xf._23;
+						tn.z = norm.x * xf._31 + norm.y * xf._32 + norm.z * xf._33;
+						float len = std::sqrt(tn.x*tn.x + tn.y*tn.y + tn.z*tn.z);
+						if (len > 0.f) { tn.x /= len; tn.y /= len; tn.z /= len; }
+						norm = tn;
+					}
 					w->w_sf("vn %f %f %f\n", norm.x, norm.y, norm.z);
 				}
 			} else {
@@ -364,6 +428,78 @@ void yae_level::save(const char* outpath, bool split, bool max)
 				}
 			}
 		}
+		/* write model instances */
+		if (!m_loaded_models.empty()) {
+			uint32_t mv_base = vertex_offsets[obj->m_meshes.size()];
+			uint32_t mn_base = normal_offsets[obj->m_meshes.size()];
+
+			msg("...model instances");
+			for (YAEStaticModel_vec_cit si = m_models.begin(); si != m_models.end(); ++si) {
+				YAEStaticModel* sm = *si;
+				std::map<std::string, yae_model*>::iterator mit = m_loaded_models.find(sm->m_name);
+				if (mit == m_loaded_models.end()) continue;
+				yae_model* loaded = mit->second;
+				const CMesh_vec& mmeshes = loaded->model_meshes();
+
+				for (size_t di = 0; di < sm->m_descs.size(); ++di) {
+					const fmatrix& xf = sm->m_descs[di].m_xform;
+
+					for (CMesh_vec_cit mi = mmeshes.begin(); mi != mmeshes.end(); ++mi) {
+						CMesh* m = *mi;
+						const xr_vbuf& vb = m->vb();
+						const xr_ibuf& ib = m->ib();
+						uint32_t nv = (uint32_t)vb.size();
+
+						w->w_sf("\ng %s_inst%zu\nusemtl %s\n",
+							sm->m_name.c_str(), di, m->texture().c_str());
+
+						/* vertices (transformed by instance xform) */
+						for (uint32_t vi = 0; vi < nv; ++vi) {
+							const fvector3& v = vb.p(vi);
+							float tx = v.x * xf._11 + v.y * xf._12 + v.z * xf._13 + xf._14;
+							float ty = v.x * xf._21 + v.y * xf._22 + v.z * xf._23 + xf._24;
+							float tz = v.x * xf._31 + v.y * xf._32 + v.z * xf._33 + xf._34;
+							w->w_sf("v %f %f %f\n", tx * scale, ty * scale, tz * scale);
+						}
+
+						/* normals (rotation only, no translation) */
+						for (uint32_t vi = 0; vi < nv; ++vi) {
+							const fvector3& n = vb.n(vi);
+							float nx = n.x * xf._11 + n.y * xf._12 + n.z * xf._13;
+							float ny = n.x * xf._21 + n.y * xf._22 + n.z * xf._23;
+							float nz = n.x * xf._31 + n.y * xf._32 + n.z * xf._33;
+							float len = std::sqrt(nx*nx + ny*ny + nz*nz);
+							if (len > 0.f) { nx /= len; ny /= len; nz /= len; }
+							w->w_sf("vn %f %f %f\n", nx, ny, nz);
+						}
+
+						/* texcoords */
+						for (uint32_t vi = 0; vi < nv; ++vi) {
+							fvector2 tc = vb.tc(vi);
+							if (max) tc.y = 1.0f - tc.y;
+							w->w_sf("vt %f %f\n", tc.x, tc.y);
+						}
+
+						/* faces */
+						for (size_t fi = 0; fi < ib.size(); fi += 3) {
+							uint32_t i1 = ib[fi] + mv_base;
+							uint32_t i2 = ib[fi + 1] + mv_base;
+							uint32_t i3 = ib[fi + 2] + mv_base;
+							uint32_t n1 = ib[fi] + mn_base;
+							uint32_t n2 = ib[fi + 1] + mn_base;
+							uint32_t n3 = ib[fi + 2] + mn_base;
+							w->w_sf("f %d/%d/%d %d/%d/%d %d/%d/%d\n",
+								i1, i1, n1, i2, i2, n2, i3, i3, n3);
+						}
+
+						mv_base += nv;
+						mn_base += nv;
+					}
+				}
+			}
+		}
+		delete[] vertex_offsets;
+		delete[] normal_offsets;
 		fs.w_close(w);
 	}
 	current_material.clear();
@@ -374,6 +510,13 @@ yae_level::~yae_level()
 {
 	delete_elements(m_meshes);
 	delete_elements(m_buffers);
+	delete_elements(m_models);
+	delete_elements(m_vistree);
+	delete_elements(m_lights);
+	for (std::map<std::string, yae_model*>::iterator it = m_loaded_models.begin();
+			it != m_loaded_models.end(); ++it)
+		delete it->second;
+	m_loaded_models.clear();
 	m_lightmaps.clear();
 }
 /* YAE_BUFFER implementation */ 
@@ -396,8 +539,8 @@ void YAE_BUFFER::load(xr_reader& r)
 			r.r_cseq(size, m_lightmaps);
 		}
 		if (has_colors()) {
-			m_raw_colors = new icolor[size];
-			r.r_cseq(size, m_raw_colors);
+			m_raw_colors = new uint32_t[size * 4];
+			r.r_cseq(size * 4, m_raw_colors);
 		}
 		if (has_normals()) {
 			m_normals = new fvector3[size];
@@ -417,13 +560,17 @@ void YAE_BUFFER::load(xr_reader& r)
 		r.r_cseq(size, m_indices);
 	}
 }
-YAE_BUFFER::YAE_BUFFER(): m_raw_colors(0), m_indices(0) {}
+YAE_BUFFER::YAE_BUFFER(): m_raw_colors(0), m_indices(0), m_tangents(0), m_binormals(0) {}
 YAE_BUFFER::~YAE_BUFFER()
 {
 	if (m_raw_colors)
 		delete[] m_raw_colors;
 	if (m_indices)
 		delete[] m_indices;
+	if (m_tangents)
+		delete[] m_tangents;
+	if (m_binormals)
+		delete[] m_binormals;
 };
 /* various implementation */ 
 void VisTreeNode::load(xr_reader& r)
@@ -456,7 +603,7 @@ void YAEStaticLight::load(xr_reader& r)
 }
 void YAEStaticModel::load(xr_reader& r)
 {
-	r.r_string(m_name);
+	ds2_r_s(r, m_name);
 	r.r(m_bbox);
 	uint32_t num = r.r_u32();
 	m_descs.resize(num);
