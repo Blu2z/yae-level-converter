@@ -1,3 +1,5 @@
+
+
 # YAE Level Converter
 
 Конвертер уровней и моделей из игры «You Are Empty» (форматы DS2/DS2MD) в OBJ.
@@ -28,7 +30,7 @@ cmake --build build -j$(nproc)
 
 **Конвертирование уровней:**
 ```
-yae_converter -level <level_folder> -out <output_path> [-mode <max|maya>] [-split] [-scale <factor>]
+yae_converter -level <level_folder> [-out <output_path>] [-mode <max|maya>] [-split] [-scale <factor>]
 ```
 
 **Конвертирование моделей:**
