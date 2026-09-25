@@ -1,3 +1,5 @@
+
+
 # YAE Level Converter
 
 [English](README.md) · [Русский](README.ru.md)
@@ -39,7 +41,7 @@ not part of this repository: use the files of your own copy of the game.
 Levels:
 
 ```
-yae_converter -level <level_folder> -out <output_path> [-mode <max|maya>] [-split] [-scale <factor>]
+yae_converter -level <level_folder> [-out <output_path>] [-mode <max|maya>] [-split] [-scale <factor>]
 ```
 
 Models:
