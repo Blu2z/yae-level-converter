@@ -1,0 +1,13 @@
+yae-level-converter — the first converter of You Are Empty's levels and models to OBJ
+
+Written by K.D. (2013; testing: Deathdoor, БогДан, Scarabey, Blu2z), with later
+build and Linux work by the Project Empty contributors. Released under the GNU
+General Public License, version 3 (LICENSE), by the Project Empty maintainers
+(2026-10-05).
+
+The xray_re-tools submodule (https://github.com/abramcumner/xray_re-tools) keeps
+its own terms: use it as you like, but do not present it as your own.
+
+You Are Empty, its content and the original DS2 Engine belong to their rights
+holders. The converter contains no game assets; the OBJ exports of the game's
+models (1/, models/) are not part of the public repository or its history.
