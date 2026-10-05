@@ -106,3 +106,6 @@ yae_converter -model <model_file> -obj|-object <output_path> [-mode <max|maya>]
 
 Автор: K.D.
 > Тестирование: Deathdoor, БогДан, Scarabey, Blu2z
+
+Конвертер распространяется под GNU General Public License версии 3 ([LICENSE](LICENSE)); у подмодуля
+`xray_re-tools` свои условия ([NOTICE](NOTICE)). Игровых ресурсов в репозитории нет.

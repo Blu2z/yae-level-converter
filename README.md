@@ -90,6 +90,5 @@ Author: K.D. Testing: Deathdoor, БогДан, Scarabey, Blu2z.
 ## Legal
 
 *You Are Empty* and its formats belong to their rights holders; the converter contains no game
-assets. The converter's license is being chosen by the maintainers (MIT proposed); note that the
-`xray_re-tools` submodule carries its own license, which the choice has to respect. Until a
-`LICENSE` file appears, all rights are reserved.
+assets. The converter is under the GNU General Public License, version 3 ([LICENSE](LICENSE)); the
+`xray_re-tools` submodule keeps its own terms ([NOTICE](NOTICE)).
